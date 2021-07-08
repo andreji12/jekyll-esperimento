@@ -2,3 +2,66 @@
 title: Casate
 permalink: /docs/casate/
 ---
+
+<div class="row">
+    <form class="navbar-form navbar-left">
+      <div class="form-group has-feedback">
+        <input id="searchBox" name="search-box" type="text" class="form-control" placeholder="Search...">
+        <i class="fa fa-search form-control-feedback"></i>
+      </div>
+      <button class="btn btn-success" onclick="searchHouses()">
+        Cerca
+      </button>
+    </form>
+  </div>
+
+<div class="houses">
+
+</div>
+
+  <script>
+      function searchHouses() {
+    $.ajax({
+      type: "GET",
+      url: API_SEARCH_BASE_URL + $("#searchBox").val(),
+      dataType: "json",
+      encode: true,
+    }).done(function (data) {
+      $.each(data, function (key, val) {
+        $(".houses").html("");
+        var house = `{% include house.html name='${val.name}' words='${val.words}' %}`
+        $(".houses").append(house);
+      });
+    });
+
+    event.preventDefault();
+
+    }
+  </script>
+
+  <!-- --------------
+---
+title: Casate
+permalink: /docs/casate/
+---
+
+
+<div class="row">
+  <form class="navbar-form navbar-left">
+    <div class="form-group has-feedback">
+      <input id="searchBox" name="search-box" type="text" class="form-control" placeholder="Search...">
+      <i class="fa fa-search form-control-feedback"></i>
+    </div>
+    <button class="btn btn-success" onclick="searchHouses()">
+      Cerca
+    </button>
+  </form>
+</div>
+
+
+<br>
+<div class="houses"></div>
+
+<hr>
+<ul class="pager">
+  <li class="n -->
